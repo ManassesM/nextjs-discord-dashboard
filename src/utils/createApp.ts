@@ -1,7 +1,9 @@
 import express, { Express } from 'express'
 import cors from 'cors'
 import session from 'express-session'
+import passport from 'passport'
 import routes from '../routes'
+require('../strategies/discord')
 
 // --- SET UP THE APP
 export function createApp(): Express {
@@ -11,7 +13,7 @@ export function createApp(): Express {
 	app.use(express.json())
 	app.use(express.urlencoded())
 
-	// Enable CORS
+	// Using CORS
 	app.use(
 		cors({
 			origin: ['http://localhost:3000'],
@@ -19,7 +21,7 @@ export function createApp(): Express {
 		})
 	)
 
-	// Enable session cookies
+	// Using session cookies
 	app.use(
 		session({
 			secret: 'LASKDJALSKDLKANSDQQLDHLJDNAS',
@@ -30,6 +32,10 @@ export function createApp(): Express {
 			},
 		})
 	)
+
+	// Using passport
+	app.use(passport.initialize())
+	app.use(passport.session())
 
 	app.use('/api', routes)
 
