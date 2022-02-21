@@ -6,6 +6,6 @@ const router = Router()
 // ---- ROUTES
 
 // -- GET
-router.get('/auth', authRouter)
+router.use('/auth', authRouter);
 
 export default router
