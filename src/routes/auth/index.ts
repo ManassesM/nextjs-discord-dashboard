@@ -11,8 +11,8 @@ router.get('/discord', passport.authenticate('discord'), (req, res) =>
 
 router.get(
 	'/discord/redirect',
-	passport.authenticate('discord/redirect'),
-	(req, res) => res.redirect('http://localhost:3001/menu')
+	passport.authenticate('discord'),
+	(req, res) => res.redirect('/discord/redirect')
 )
 
 router.get('/status', (req, res) => {
