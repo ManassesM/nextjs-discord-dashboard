@@ -4,6 +4,8 @@ import cors from 'cors'
 import session from 'express-session'
 import passport from 'passport'
 import routes from '../routes'
+import store from 'connect-mongo'
+
 config()
 require('../strategies/discord')
 
@@ -30,6 +32,9 @@ export function createApp(): Express {
 			resave: false,
 			saveUninitialized: true,
 			cookie: { maxAge: 60000 * 60 * 24 * 7 },
+			store: store.create({
+				mongoUrl: 'mongodb://localhost/discord_dashboard',
+			}),
 		})
 	)
 

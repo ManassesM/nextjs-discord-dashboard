@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import passport from 'passport'
+
 const router = Router()
 
 // ---- ROUTES
@@ -9,10 +10,8 @@ router.get('/discord', passport.authenticate('discord'), (req, res) =>
 	res.send(200)
 )
 
-router.get(
-	'/discord/redirect',
-	passport.authenticate('discord'),
-	(req, res) => res.redirect('/discord/redirect')
+router.get('/discord/redirect', passport.authenticate('discord'), (req, res) =>
+	res.send({ msg: 'Success' })
 )
 
 router.get('/status', (req, res) => {
