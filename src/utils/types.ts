@@ -3,6 +3,6 @@ export type PartialGuild = {
 	name: string
 	icon: string
 	owner: boolean
-	permission: string
+	permissions: string
 	feature: string[]
 }
